@@ -1,0 +1,8 @@
+langgraph
+langchain
+langchain[openai]
+langgraph-cli[inmem]
+selenium
+helium
+pillow
+beautifulsoup4

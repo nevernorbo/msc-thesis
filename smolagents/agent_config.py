@@ -1,4 +1,5 @@
-from smolagents import CodeAgent, LiteLLMModel, DuckDuckGoSearchTool
+import os
+from smolagents import CodeAgent, OpenAIServerModel, DuckDuckGoSearchTool
 from tools import go_back, close_popups, search_item_ctrl_f
 
 
@@ -7,9 +8,17 @@ def get_agent(driver):
 
     set_driver(driver)
 
-    model = LiteLLMModel(
-        model_id="ollama_chat/gemma3:12b",
-        api_base="http://localhost:11434",
+    # model = OpenAIServerModel(
+    #     model_id="gemma3:12b",
+    #     api_base="http://localhost:11434/v1",
+    #     api_key="ollama",
+    #     flatten_messages_as_text=False,
+    # )
+
+    model = OpenAIServerModel(
+        model_id="gemini-2.5-flash",
+        api_base="https://generativelanguage.googleapis.com/v1beta/openai/",
+        api_key=os.getenv("GOOGLE_API_KEY"),
     )
 
     agent = CodeAgent(
